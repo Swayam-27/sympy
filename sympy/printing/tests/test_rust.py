@@ -83,6 +83,7 @@ def test_Pow():
 
     assert rust_code(x**Rational(1, 3)) == "x.cbrt()"
     assert rust_code(2**x) == "x.exp2()"
+    assert rust_code(0**x) == "0.0_f64.powf(x)"
     assert rust_code(exp(x)) == "x.exp()"
     assert rust_code(x**3) == "x.powi(3)"
     assert rust_code(x**(y**3)) == "x.powf(y.powi(3))"

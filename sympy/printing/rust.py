@@ -413,7 +413,8 @@ class RustCodePrinter(CodePrinter):
         return super()._print_Add(expr, order)
 
     def _print_Pow(self, expr):
-        if expr.base.is_integer and not expr.exp.is_integer:
+        if (expr.base.is_integer and not expr.base.is_Float
+                and not expr.exp.is_integer):
             expr = type(expr)(Float(expr.base), expr.exp)
             return self._print(expr)
         return self._print_Function(expr)
